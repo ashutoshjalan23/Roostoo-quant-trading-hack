@@ -329,10 +329,11 @@ base_url          = "..."
 max_clock_skew_ms = 0
 
 [data]
-source            = "..."
-interval          = "1h"
-history_days      = 0
-cache_dir         = "..."
+source             = "..."
+interval           = "..."
+history_days       = 0
+cache_dir          = "..."
+warmup_halflives   = 0      # EWMA half-lives required before a decision is scored
 
 [universe]
 quote_asset                = "..."
@@ -393,9 +394,13 @@ max_data_age_seconds           = 0
 max_unexplained_equity_move    = 0.0
 
 [backtest]
+initial_cash   = 0
+start          = "..."      # first bar loaded; must precede report_from by the warm-up
+report_from    = "..."      # first bar whose decision is scored
 in_sample_end  = "..."
 holdout_start  = "..."
 window_days    = 0
+step_days      = 0
 ```
 
 **The placeholders above are placeholders.** `0` and `"..."` are not defaults and not suggestions.
@@ -404,7 +409,39 @@ from the rule sheet (§2) or from a pre-registered research run (§11). A config
 placeholders should fail validation with a message naming the unset keys, which is the desired
 behaviour: it makes an unconfigured bot refuse to start rather than trade on invented numbers.
 
-Additional rules:
+### 6.1 Derived values
+
+Some quantities are **computed from config, never configured directly**. Deriving them is not a
+violation of the no-hardcoding rule — it is the point of it. A number that can be derived and is
+instead typed in by hand is a number that will silently disagree with the values it should follow.
+
+`warmup_bars` is the main one. Every stage of the strategy needs history before its output means
+anything, and the requirement is a function of parameters you already set:
+
+```
+warmup_bars = max(
+    max(signal.horizons_days) * bars_per_day + signal.skip_hours,
+    universe.volume_window_days * bars_per_day,
+    data.warmup_halflives * ewma_halflife_bars(vol.lambda),
+)
+
+where ewma_halflife_bars(lam) = log(0.5) / log(lam)
+```
+
+Change `horizons_days`, `volume_window_days` or `lambda`, and the warm-up follows automatically.
+The only free parameter is `warmup_halflives` — how many EWMA half-lives you require before
+trusting the volatility estimate. It is a placeholder like any other.
+
+This matters more than it looks. At a high `lambda` the half-life runs to dozens of hours and full
+convergence takes weeks. A backtest that starts scoring before the estimator has converged runs on
+a volatility forecast that reads everything as calm, so the vol target leaves exposure at maximum
+through exactly the period you should distrust. Nothing crashes. You get a plausible equity curve.
+
+Validation must therefore reject a config where `report_from` is earlier than
+`start + warmup_bars`, with an error stating the required warm-up and the shortfall — not merely
+reject `report_from` earlier than `start`.
+
+**Additional rules:**
 
 - **Pair metadata is fetched, not written.** Lot sizes, tick sizes, and minimum notionals come from
   `exchangeInfo`. Commit a snapshot of it so backtests are reproducible when the exchange relists
@@ -588,6 +625,10 @@ def run_backtest(panel, config, exchange_info, start, end):
     for t in panel.timestamps_between(start, end):          # hourly
         visible = panel.slice_to(t)                          # HARD BOUNDARY
         prices  = visible.last_prices()
+
+        if visible.n_rows < config.derived.warmup_bars:      # see §6.1
+            records.append(CycleRecord(timestamp=t, halted_reason="warmup"))
+            continue
 
         equity_curve.append((t, book.equity(prices)))
 

@@ -150,11 +150,18 @@ could be committed.
 
 Validation must reject: any remaining placeholder; `keep_rank <= top_k`;
 `max_single_name * top_k < 1`; `lambda` outside `(0, 1)`; empty `horizons_days`; negative or
-absurd fees; `report_from` before `start`; `holdout_start` before `in_sample_end`.
+absurd fees; `report_from` earlier than `start + warmup_bars` (see `README.md` §6.1 — the error
+must state the required warm-up and the shortfall); `holdout_start` before `in_sample_end`.
+
+`warmup_bars` is **derived**, not configured. Compute it per `README.md` §6.1 from
+`horizons_days`, `skip_hours`, `volume_window_days`, `lambda` and `warmup_halflives`. Do not add
+it as a config key. Deriving a value from config is not hardcoding; typing in a number that should
+follow other values is.
 
 **Gate.** A test per validation rule, each asserting the specific error message. A config with
-placeholders fails with a message naming the unset keys. No default value appears anywhere in
-`config.py`.
+placeholders fails with a message naming the unset keys. A test asserting `warmup_bars` changes
+when `lambda`, `horizons_days` or `volume_window_days` change. No default value appears anywhere
+in `config.py`.
 
 **Do not.** Fill in any placeholder. Add any fallback.
 
@@ -264,10 +271,11 @@ sells; an order above `max_order_fraction` is rejected, not truncated silently.
 ## Phase 7 — the simulator
 
 **Build.** `src/qtrend/backtest/simulator.py` implementing the event loop from `README.md` §9.3,
-including the warm-up guard:
+including the warm-up guard. `warmup_bars` comes from the derivation in `README.md` §6.1, computed
+in Phase 1 — it is not a config key:
 
 ```python
-if view.n_rows < config.data.warmup_bars:
+if view.n_rows < config.derived.warmup_bars:
     records.append(CycleRecord(t=t, halted_reason="warmup"))
     continue
 ```
