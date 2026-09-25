@@ -1,0 +1,16 @@
+# Credentials — never committed. See CLAUDE.md rule 9.
+.env
+
+# Caches and run artefacts
+data/cache/
+logs/
+__pycache__/
+*.py[cod]
+
+# Tooling
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
