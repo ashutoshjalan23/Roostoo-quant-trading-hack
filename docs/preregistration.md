@@ -32,6 +32,8 @@ reaches ten, the budget is spent and the strategy is locked.
 
 ## Registered run pair — 2026-09-29
 
+Pre-registration commit: `5df3e09`.
+
 Configurations: `configs/research-usd-1m.toml` and
 `configs/research-usd-1m-stress.toml`. Both use the fixed ten-symbol universe
 BTC/ETH/BNB/SOL/XRP/ADA/DOGE/LTC/LINK/AVAX, USD 1h bars, $1,000,000 initial cash, and
