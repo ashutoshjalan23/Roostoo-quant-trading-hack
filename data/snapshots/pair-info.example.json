@@ -1,0 +1,18 @@
+{
+  "BTCUSD": {
+    "step_size": "REPLACE_WITH_EXCHANGE_VALUE",
+    "min_notional": "REPLACE_WITH_EXCHANGE_VALUE"
+  },
+  "ETHUSD": {
+    "step_size": "REPLACE_WITH_EXCHANGE_VALUE",
+    "min_notional": "REPLACE_WITH_EXCHANGE_VALUE"
+  },
+  "BNBUSD": {
+    "step_size": "REPLACE_WITH_EXCHANGE_VALUE",
+    "min_notional": "REPLACE_WITH_EXCHANGE_VALUE"
+  },
+  "SOLUSD": {
+    "step_size": "REPLACE_WITH_EXCHANGE_VALUE",
+    "min_notional": "REPLACE_WITH_EXCHANGE_VALUE"
+  }
+}

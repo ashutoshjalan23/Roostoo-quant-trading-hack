@@ -1,0 +1,81 @@
+[meta]
+name = "..."
+mode = "hold"
+
+[exchange]
+base_url = "..."
+max_clock_skew_ms = 0
+
+[data]
+source = "..."
+interval = "1h"
+history_days = 0
+cache_dir = "data/cache/coingecko"
+warmup_halflives = 0
+
+[universe]
+quote_asset = "..."
+volume_window_days = 0
+min_daily_dollar_volume = 0
+exclude = []
+
+[vol]
+lambda = 0.0
+min_observations = 0
+floor = 0.0
+
+[signal]
+horizons_days = []
+skip_hours = 0
+
+[selection]
+hour_utc = 0
+top_k = 0
+keep_rank = 0
+min_signal = 0.0
+
+[weights]
+scheme = "equal"
+max_single_name = 0.0
+
+[exposure]
+target_daily_vol = 0.0
+rho_estimation = "rolling"
+rho_window_days = 0
+max_leverage = 1.0
+
+[execution]
+drift_band = 0.0
+order_type = "market"
+cash_buffer = 0.0
+sells_before_buys = true
+use_client_order_id = true
+
+[costs]
+taker_fee = 0.0
+maker_fee = 0.0
+slippage_bps = 0.0
+
+[limits]
+api_calls_per_minute = 0
+min_seconds_between_orders = 0
+max_order_fraction = 0.0
+
+[risk]
+stop_loss_enabled = false
+stop_loss_sigma = 0.0
+stop_cooldown_hours = 0
+daily_loss_limit = 0.0
+
+[safety]
+max_data_age_seconds = 0
+max_unexplained_equity_move = 0.0
+
+[backtest]
+initial_cash = 0
+start = "..."
+report_from = "..."
+in_sample_end = "..."
+holdout_start = "..."
+window_days = 0
+step_days = 0
