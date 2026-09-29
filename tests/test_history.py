@@ -4,12 +4,15 @@ from __future__ import annotations
 
 from datetime import UTC, datetime, timedelta
 from hashlib import sha256
+from io import BytesIO
 from pathlib import Path
+from zipfile import ZipFile
 
 from scripts.fetch_history import (
     build_panel,
     bulk_jobs,
     coverage_report,
+    load_cached_panel,
     month_periods,
     parse_kline_csv,
     snap_close_time,
@@ -84,3 +87,25 @@ def test_bulk_jobs_and_coverage_are_deterministic():
         build_panel(rows, timedelta(hours=1)), start=rows[0][0], end=rows[0][0]
     )
     assert report == {"expected_bars": 1, "observed_bars": 1, "complete": True}
+
+
+def test_load_cached_panel_reads_verified_monthly_zip(tmp_path):
+    csv_bytes = (
+        b"1704067200000,100,101,99,100.5,10,1704070799999,12345\n"
+        b"1704070800000,100.5,102,100,101,11,1704074399999,13579\n"
+    )
+    archive_path = tmp_path / "AAAUSDT-1h-2024-01.zip"
+    buffer = BytesIO()
+    with ZipFile(buffer, "w") as archive:
+        archive.writestr("AAAUSDT-1h-2024-01.csv", csv_bytes)
+    content = buffer.getvalue()
+    archive_path.write_bytes(content)
+    archive_path.with_suffix(".zip.CHECKSUM").write_text(sha256(content).hexdigest())
+
+    panel = load_cached_panel(
+        [archive_path], timedelta(hours=1), {"AAAUSDT": "AAAUSD"}
+    )
+    view = panel.slice_to(panel.end_time)
+    assert panel.symbols == ("AAAUSD",)
+    assert view.close("AAAUSD").tolist() == [100.5, 101.0]
+    assert view.quote_volume("AAAUSD").tolist() == [12345.0, 13579.0]

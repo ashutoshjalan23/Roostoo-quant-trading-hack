@@ -1,0 +1,81 @@
+[meta]
+name = "research-usd-1m"
+mode = "hold"
+
+[exchange]
+base_url = "https://mock-api.roostoo.com"
+max_clock_skew_ms = 60000
+
+[data]
+source = "Binance Vision spot USDT pairs; USDT treated as a USD proxy"
+interval = "1h"
+history_days = 550
+cache_dir = "data/cache/binance-spot-usdt-1h"
+warmup_halflives = 5
+
+[universe]
+quote_asset = "USD"
+volume_window_days = 30
+min_daily_dollar_volume = 10000000
+exclude = []
+
+[vol]
+lambda = 0.94
+min_observations = 48
+floor = 0.005
+
+[signal]
+horizons_days = [7, 14, 30]
+skip_hours = 24
+
+[selection]
+hour_utc = 0
+top_k = 5
+keep_rank = 10
+min_signal = 0.0
+
+[weights]
+scheme = "equal"
+max_single_name = 0.2
+
+[exposure]
+target_daily_vol = 0.03
+rho_estimation = "rolling"
+rho_window_days = 30
+max_leverage = 1.0
+
+[execution]
+drift_band = 0.05
+order_type = "market"
+cash_buffer = 0.02
+sells_before_buys = true
+use_client_order_id = true
+
+[costs]
+taker_fee = 0.001
+maker_fee = 0.001
+slippage_bps = 10
+
+[limits]
+api_calls_per_minute = 60
+min_seconds_between_orders = 1
+max_order_fraction = 1.0
+
+[risk]
+stop_loss_enabled = false
+stop_loss_sigma = 0.0
+stop_cooldown_hours = 0
+daily_loss_limit = 0.0
+
+[safety]
+max_data_age_seconds = 7200
+max_unexplained_equity_move = 0.5
+
+[backtest]
+initial_cash = 1000000
+start = "2023-06-30T23:00:00Z"
+report_from = "2023-08-01T00:00:00Z"
+in_sample_end = "2025-01-01T00:00:00Z"
+holdout_start = "2025-01-01T00:00:00Z"
+window_days = 14
+step_days = 7

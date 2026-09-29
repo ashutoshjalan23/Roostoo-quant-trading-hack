@@ -7,9 +7,11 @@ import csv
 import hashlib
 import io
 import json
+import zipfile
 from collections.abc import Iterable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import UTC, datetime, timedelta
+from io import BytesIO
 from pathlib import Path
 
 import requests
@@ -155,8 +157,9 @@ def bulk_jobs(
     jobs = []
     for symbol in sorted(set(symbols)):
         for year, month in sorted(set(periods)):
-            filename = f"{symbol}-{year:04d}-{month:02d}.csv"
             url = url_template.format(symbol=symbol, year=year, month=f"{month:02d}")
+            suffix = Path(url.split("?", maxsplit=1)[0]).suffix or ".csv"
+            filename = f"{symbol}-{year:04d}-{month:02d}{suffix}"
             jobs.append((url, url + ".CHECKSUM", cache_dir / filename))
     return tuple(jobs)
 
@@ -218,15 +221,27 @@ def build_panel(
     )
 
 
-def load_cached_panel(paths: Iterable[Path], interval: timedelta) -> Panel:
+def load_cached_panel(
+    paths: Iterable[Path], interval: timedelta, symbol_map: dict[str, str] | None = None
+) -> Panel:
     """Parse cached CSV files and assemble one deterministic panel."""
     rows: list[tuple[datetime, str, float, float]] = []
     for path in sorted(paths):
         checksum_path = path.with_suffix(path.suffix + ".CHECKSUM")
         if checksum_path.exists():
             verify_sha256(path.read_bytes(), checksum_path.read_text(encoding="utf-8"))
-        symbol = path.stem.split("-")[0]
-        rows.extend(parse_kline_csv(path.read_bytes(), symbol, interval))
+        source_symbol = path.stem.split("-")[0]
+        symbol = (symbol_map or {}).get(source_symbol, source_symbol)
+        content = path.read_bytes()
+        if zipfile.is_zipfile(BytesIO(content)):
+            with zipfile.ZipFile(BytesIO(content)) as archive:
+                csv_names = sorted(
+                    name for name in archive.namelist() if name.lower().endswith(".csv")
+                )
+                if len(csv_names) != 1:
+                    raise ValueError(f"expected one CSV in {path}, found {len(csv_names)}")
+                content = archive.read(csv_names[0])
+        rows.extend(parse_kline_csv(content, symbol, interval))
     return build_panel(tuple(rows), interval)
 
 

@@ -1,0 +1,354 @@
+{
+  "1000CHEEMSUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "AAVEUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "ADAUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "AMDBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "APTUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "ARBUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "ASTERUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "AVAXUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "AVNTUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "BIOUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "BMTUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "BNBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "BONKUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "BTCUSD": {
+    "min_notional": "1",
+    "step_size": "0.00001"
+  },
+  "CAKEUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "CBRSBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "CFXUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "COINBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "CRCLBUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "CRVUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "DOGEUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "DOTUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "EDENUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "EIGENUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "ENAUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "ETHUSD": {
+    "min_notional": "1",
+    "step_size": "0.0001"
+  },
+  "FETUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "FILUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "FLOKIUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "FORMUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "GLWBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "GOOGLBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "HBARUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "HEMIUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "ICPUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "INTCBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "LINEAUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "LINKUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "LISTAUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "LITEBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "LTCUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "METABUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "MIRAUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "MSFTBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "MSTRBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "MUBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "NBISBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "NEARUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "NVDABUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "OMNIUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "ONDOUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "OPENUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "PAXGUSD": {
+    "min_notional": "1",
+    "step_size": "0.0001"
+  },
+  "PENDLEUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "PENGUUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "PEPEUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "PLTRBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "PLUMEUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "POLUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "PUMPUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "QCOMBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "SEIUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "SHIBUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "SKHYBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "SNDKBUSD": {
+    "min_notional": "1",
+    "step_size": "0.0001"
+  },
+  "SOLUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "SOMIUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "SPCXBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "STOUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "SUIUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "SUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "TAOUSD": {
+    "min_notional": "1",
+    "step_size": "0.0001"
+  },
+  "TONUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "TRUMPUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "TRXUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "TSLABUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "TUTUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "UNIUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "VIRTUALUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "WDCBUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "WIFUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  },
+  "WLDUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "WLFIUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "XLMUSD": {
+    "min_notional": "1",
+    "step_size": "1"
+  },
+  "XPLUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "XRPUSD": {
+    "min_notional": "1",
+    "step_size": "0.1"
+  },
+  "ZECUSD": {
+    "min_notional": "1",
+    "step_size": "0.001"
+  },
+  "ZENUSD": {
+    "min_notional": "1",
+    "step_size": "0.01"
+  }
+}
