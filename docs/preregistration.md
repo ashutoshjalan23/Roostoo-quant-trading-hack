@@ -53,6 +53,25 @@ net return, non-positive median window return, or a negative net return under th
 falsifies the hypothesis. This is one fixed configuration plus the required execution-cost
 sensitivity, not a parameter search.
 
+#### Result — run 2026-09-29
+
+- **Code commit:** `1bb5c3e`
+- **Outcome:** hypothesis accepted under the preregistered proxy assumptions; net return and
+  median 14-day return were positive in both cost cases.
+- **10 bps slippage:** ending equity $2,391,149.86; PnL $1,391,149.86; return 139.11%; Calmar
+  2.166; Sharpe 1.459; Sortino 2.157; max drawdown 39.07%.
+- **25 bps slippage:** ending equity $2,318,943.34; PnL $1,318,943.34; return 131.89%; Calmar
+  2.035; Sharpe 1.417; Sortino 2.091; max drawdown 39.64%.
+- **14-day rolling returns, 10 bps:** 73 windows; median 1.44%; p10 -8.95%; p90 17.74%; worst
+  -18.36%; worst window max drawdown 21.39%.
+- **14-day rolling returns, 25 bps:** 73 windows; median 1.41%; p10 -9.05%; p90 17.64%; worst
+  -18.45%; worst window max drawdown 21.42%.
+- **Limitations:** Binance USDT prices and volumes stand in for Roostoo USD history; the USDT/USD
+  peg is assumed. The symbol universe is fixed from currently tradeable pairs, and current Roostoo
+  quantity/minimum-order metadata is applied retrospectively. Fees and slippage are assumptions.
+  This is a proxy research result, not evidence of Roostoo execution performance. The holdout was
+  not used, and no benchmark returns were computed.
+
 The metrics convention is daily UTC closing equity, 365 periods per year, Sortino MAR 0, and
 Calmar undefined when maximum drawdown is below 1%. PnL and return are measured from the initial
 $1,000,000 at `report_from`; all results include modeled fees and slippage.
