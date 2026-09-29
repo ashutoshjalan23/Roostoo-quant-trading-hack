@@ -39,14 +39,21 @@ def handler_for(state: MockState):
             if self.path == "/v3/exchange_info":
                 _response(self, 200, {"Success": True, "TradePairs": {}})
                 return
-            if self.path == "/v3/account":
-                length = int(self.headers.get("Content-Length", "0"))
-                body = self.rfile.read(length)
+            if self.path.startswith("/v3/account?"):
+                body = self.path.partition("?")[2].encode("ascii")
                 expected = hmac.new(state.secret_key, body, hashlib.sha256).hexdigest()
                 if self.headers.get("RST-API-KEY") != state.api_key or not hmac.compare_digest(
                     expected, self.headers.get("MSG-SIGNATURE", "")
                 ):
                     _response(self, 401, {"Success": False, "ErrMsg": "invalid credentials"})
+                    return
+                params = parse_qs(body.decode("ascii"), keep_blank_values=True)
+                if "timestamp" not in params:
+                    _response(self, 400, {"Success": False, "ErrMsg": "missing timestamp"})
+                    return
+                timestamp = int(params["timestamp"][0])
+                if abs(int(time.time() * 1000) - timestamp) > state.max_clock_skew_ms:
+                    _response(self, 400, {"Success": False, "ErrMsg": "timestamp outside window"})
                     return
                 _response(self, 200, {"Success": True, "Assets": {}})
                 return
@@ -66,11 +73,13 @@ def handler_for(state: MockState):
                 _response(self, 401, {"Success": False, "ErrMsg": "invalid signature"})
                 return
             params = parse_qs(body.decode("utf-8"), keep_blank_values=True)
-            if "timestamp" in params:
-                timestamp = int(params["timestamp"][0])
-                if abs(int(time.time() * 1000) - timestamp) > state.max_clock_skew_ms:
-                    _response(self, 400, {"Success": False, "ErrMsg": "timestamp outside window"})
-                    return
+            if "timestamp" not in params:
+                _response(self, 400, {"Success": False, "ErrMsg": "missing timestamp"})
+                return
+            timestamp = int(params["timestamp"][0])
+            if abs(int(time.time() * 1000) - timestamp) > state.max_clock_skew_ms:
+                _response(self, 400, {"Success": False, "ErrMsg": "timestamp outside window"})
+                return
             if "429" in state.faults:
                 _response(self, 429, {"Success": False, "ErrMsg": "rate limited"})
                 return

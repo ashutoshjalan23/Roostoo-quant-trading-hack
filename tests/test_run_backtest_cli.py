@@ -5,6 +5,7 @@ from __future__ import annotations
 import sys
 from datetime import UTC, datetime, timedelta
 
+import scripts.run_backtest as run_backtest_module
 from scripts.run_backtest import main
 
 from test_config import _toml_value, valid_document
@@ -45,6 +46,15 @@ def test_run_backtest_cli_loads_cache_and_metadata(tmp_path, capsys, monkeypatch
     pair_info = tmp_path / "pair-info.json"
     pair_info.write_text('{"AAA": {"step_size": "0.01", "min_notional": "10"}}', encoding="utf-8")
 
+    observed = {}
+    original_run_backtest = run_backtest_module.run_backtest
+
+    def capture_end(*args, **kwargs):
+        observed["end"] = args[4]
+        return original_run_backtest(*args, **kwargs)
+
+    monkeypatch.setattr(run_backtest_module, "run_backtest", capture_end)
+
     monkeypatch.setattr(
         sys,
         "argv",
@@ -55,3 +65,4 @@ def test_run_backtest_cli_loads_cache_and_metadata(tmp_path, capsys, monkeypatch
     )
     assert main() == 0
     assert '"bars": 72' in capsys.readouterr().out
+    assert observed["end"] == datetime.fromisoformat(document["backtest"]["in_sample_end"])

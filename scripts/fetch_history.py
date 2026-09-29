@@ -198,22 +198,17 @@ def build_panel(
         volume[index][column[symbol]] = quote_volume
         stale[index][column[symbol]] = False
     for symbol_index in range(len(symbols)):
-        first_observed = next(
-            (
-                (close[row_index][symbol_index], volume[row_index][symbol_index])
-                for row_index in range(len(timestamps))
-                if not stale[row_index][symbol_index]
-            ),
-            (float("nan"), float("nan")),
-        )
-        last_price, last_volume = first_observed
+        last_price: float | None = None
         for row_index in range(len(timestamps)):
             if stale[row_index][symbol_index]:
-                close[row_index][symbol_index] = last_price
-                volume[row_index][symbol_index] = last_volume
+                # A gap can only carry information already observed. Leading rows have no
+                # prior close, so leave their price unknown; missing bars have no volume.
+                close[row_index][symbol_index] = (
+                    float("nan") if last_price is None else last_price
+                )
+                volume[row_index][symbol_index] = 0.0
             else:
                 last_price = close[row_index][symbol_index]
-                last_volume = volume[row_index][symbol_index]
     return Panel(
         index=timestamps,
         close=close,

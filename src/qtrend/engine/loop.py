@@ -29,7 +29,7 @@ def run_cycle(
             data_age_seconds, max_data_age_seconds, unexplained_equity_move,
             max_unexplained_equity_move, portfolio_volatility,
         )
-    except BaseException:
+    except Exception:
         result = {"halted_reason": "unhandled_exception", "decision": {}, "orders": [], "fills": []}
         journal.append(result)
         return result
@@ -41,7 +41,7 @@ def run_cycle(
         decision = decide(state)
         orders = plan(decision)
         fills = [] if dry_run else execute(orders)
-    except BaseException:
+    except Exception:
         result = {"halted_reason": "unhandled_exception", "decision": {}, "orders": [], "fills": []}
         journal.append(result)
         return result

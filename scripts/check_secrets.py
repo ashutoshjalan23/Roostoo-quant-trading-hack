@@ -25,6 +25,10 @@ from dataclasses import dataclass
 
 MAX_FILE_BYTES = 2_000_000
 
+
+class UnscannableFileError(ValueError):
+    """A text file exceeded the configured scan size and must fail closed."""
+
 # A value matching this is structurally incapable of being a credential: it carries no
 # alphanumeric content at all (e.g. "...", "****", "<>"). Nothing else is exempted --
 # a word-based allowlist would be a hole in the scanner.
@@ -119,7 +123,7 @@ def scan_text(path: str, text: str) -> list[Finding]:
 
 def _decode(blob: bytes) -> str | None:
     if len(blob) > MAX_FILE_BYTES:
-        return None
+        raise UnscannableFileError(f"file exceeds scan limit of {MAX_FILE_BYTES} bytes")
     if b"\0" in blob[:8192]:
         return None
     try:
@@ -129,10 +133,14 @@ def _decode(blob: bytes) -> str | None:
 
 
 def scan_staged() -> tuple[list[Finding], list[str]]:
-    paths = _nul_list(_git("diff", "--cached", "--name-only", "-z", "--diff-filter=ACM"))
+    paths = _nul_list(_git("diff", "--cached", "--name-only", "-z", "--diff-filter=ACMR"))
     findings: list[Finding] = []
     for path in sorted(paths):
-        text = _decode(_git_bytes("show", f":{path}"))
+        try:
+            text = _decode(_git_bytes("show", f":{path}"))
+        except UnscannableFileError as error:
+            findings.append(Finding(path, 0, "unscanned file", str(error)))
+            continue
         if text is None:
             continue
         findings.extend(scan_text(path, text))
@@ -146,10 +154,14 @@ def scan_all() -> tuple[list[Finding], list[str]]:
     for path in sorted(paths):
         try:
             with open(path, "rb") as handle:
-                blob = handle.read()
+                blob = handle.read(MAX_FILE_BYTES + 1)
         except OSError:
             continue
-        text = _decode(blob)
+        try:
+            text = _decode(blob)
+        except UnscannableFileError as error:
+            findings.append(Finding(path, 0, "unscanned file", str(error)))
+            continue
         if text is None:
             continue
         scanned.append(path)
@@ -181,13 +193,22 @@ def main(argv: list[str] | None = None) -> int:
     if tracked_env:
         sys.stderr.write("check_secrets: .env is under version control. It must be git-ignored.\n")
 
-    if findings:
-        sys.stderr.write(f"check_secrets: {len(findings)} credential-shaped string(s) found.\n")
+    credential_findings = [finding for finding in findings if finding.rule != "unscanned file"]
+    unscanned = [finding for finding in findings if finding.rule == "unscanned file"]
+    if credential_findings:
+        sys.stderr.write(
+            f"check_secrets: {len(credential_findings)} credential-shaped string(s) found.\n"
+        )
         sys.stderr.write("Values are redacted below by design; open the file to inspect.\n\n")
-        for finding in findings:
+        for finding in credential_findings:
             sys.stderr.write(f"  {finding.path}:{finding.line_no}: {finding.rule}\n")
             sys.stderr.write(f"    {finding.redacted_line}\n")
         sys.stderr.write("\nCredentials belong in .env only (CLAUDE.md rule 9).\n")
+
+    if unscanned:
+        sys.stderr.write(f"check_secrets: {len(unscanned)} file(s) could not be scanned.\n")
+        for finding in unscanned:
+            sys.stderr.write(f"  {finding.path}: {finding.redacted_line}\n")
 
     if findings or tracked_env:
         return 1

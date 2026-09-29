@@ -57,7 +57,7 @@ def main() -> int:
     panel = load_cached_panel(args.csv, interval)
     info = pair_info_from_json(args.pair_info)
     result = run_backtest(
-        panel, config, info, config.backtest.start, config.backtest.holdout_start
+        panel, config, info, config.backtest.start, config.backtest.in_sample_end
     )
     output = {
         "bars": panel.n_rows,

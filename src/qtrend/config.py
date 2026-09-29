@@ -607,9 +607,15 @@ def _check_domains(values: dict[str, object], skip: set[str], problems: list[str
     interval = get("data.interval")
     if isinstance(interval, str):
         try:
-            bars_per_day(interval)
+            per_day = bars_per_day(interval)
         except ValueError as error:
             problems.append(str(error))
+        else:
+            if per_day != 24:
+                problems.append(
+                    f"data.interval {interval!r} is unsupported: strategy and simulator "
+                    "currently require one-hour bars"
+                )
 
     lam = get("vol.lambda")
     if lam is not None and not 0 < lam < 1:

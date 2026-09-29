@@ -43,3 +43,7 @@ def test_simulator_is_deterministic_and_respects_warmup(tmp_path):
 
     assert first.equity_curve == second.equity_curve
     assert any(record.halted_reason == "warmup" for record in first.records)
+
+    cutoff = datetime(2024, 1, 2, 1, tzinfo=UTC)
+    bounded = run_backtest(panel, config, info, panel.start_time, cutoff)
+    assert all(fill.timestamp <= cutoff for record in bounded.records for fill in record.fills)

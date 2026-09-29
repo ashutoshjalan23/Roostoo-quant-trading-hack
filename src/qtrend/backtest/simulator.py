@@ -124,6 +124,13 @@ def run_backtest(
         if timestamp.hour != config.selection.hour_utc:
             continue
 
+        try:
+            fill_timestamp = panel.next_timestamp(timestamp)
+        except IndexError:
+            continue
+        if fill_timestamp > end:
+            continue
+
         eligible = universe.eligible(view, config.universe)
         sigmas = volatility.forecast(view, eligible, config.vol)
         signals = signal.compute(view, eligible, sigmas, config.signal)
@@ -134,18 +141,17 @@ def run_backtest(
         orders = plan_orders(
             book.weights(decimal_prices), target_weights, equity, decimal_prices,
             exchange_info, config.execution, config.limits,
+            config.costs,
         )
         fills: tuple[Fill, ...] = ()
-        if timestamp != panel.end_time:
-            next_timestamp = panel.next_timestamp(timestamp)
-            book, fills = _apply_orders(
-                book, orders, panel.prices_at(next_timestamp), next_timestamp, config
-            )
-            held = set(selected)
+        book, fills = _apply_orders(
+            book, orders, panel.prices_at(fill_timestamp), fill_timestamp, config
+        )
+        held = set(selected)
         records.append(
             CycleRecord(
                 timestamp, eligible, signals, sigmas, selected, target_weights,
-                orders, fills, book.equity(decimal_prices), None,
+                orders, fills, equity, None,
             )
         )
     return BacktestResult(tuple(equity_curve), tuple(records))

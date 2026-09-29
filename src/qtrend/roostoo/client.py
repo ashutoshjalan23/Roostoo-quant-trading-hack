@@ -9,6 +9,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from threading import Lock
 from typing import Protocol
+from urllib.parse import urlsplit
 
 import requests
 
@@ -107,8 +108,12 @@ class RoostooClient:
         self.clock_offset_ms = 0
 
     def signed_body(self, body: bytes) -> bytes:
-        """Return the exact body that is signed and sent."""
-        return body
+        """Add the synchronized server timestamp to the exact signed parameter bytes."""
+        if any(part.partition(b"=")[0] == b"timestamp" for part in body.split(b"&")):
+            raise ValueError("signed request body must not supply its own timestamp")
+        timestamp = self.clock_ms() + self.clock_offset_ms
+        separator = b"&" if body else b""
+        return body + separator + b"timestamp=" + str(timestamp).encode("ascii")
 
     def sync_clock(self, server_time_ms: int) -> int:
         local = self.clock_ms()
@@ -135,9 +140,13 @@ class RoostooClient:
             "MSG-SIGNATURE": signature(self.secret_key, body),
             "Content-Type": "application/x-www-form-urlencoded",
         }
-        response = self.session.request(
-            method, self.config.base_url + path, data=body, headers=headers
-        )
+        url = self.config.base_url + path
+        if method.upper() == "GET":
+            query = body.decode("ascii")
+            separator = "&" if urlsplit(url).query else "?"
+            response = self.session.request(method, url + separator + query, headers=headers)
+        else:
+            response = self.session.request(method, url, data=body, headers=headers)
         response.raise_for_status()
         return response.json()
 
@@ -150,7 +159,7 @@ class RoostooClient:
     def place_order(self, body: bytes) -> object:
         try:
             return self.signed_request("POST", "/v3/place_order", body)
-        except (requests.Timeout, requests.ConnectionError, ValueError) as error:
+        except (requests.RequestException, ValueError) as error:
             raise UncertainOrderError(
                 "place_order response is uncertain; cycle must halt"
             ) from error

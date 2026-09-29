@@ -47,15 +47,27 @@ def test_build_panel_forward_fills_gaps_and_marks_them_stale():
     assert view.stale_mask("AAA").tolist() == [False, True, False]
 
 
-def test_build_panel_seeds_leading_rows_from_first_observation():
+def test_build_panel_does_not_fill_leading_rows_from_a_future_observation():
     rows = (
         (datetime(2024, 1, 1, 1, tzinfo=UTC), "AAA", 10.0, 100.0),
         (datetime(2024, 1, 1, 2, tzinfo=UTC), "BBB", 12.0, 120.0),
     )
     panel = build_panel(rows, timedelta(hours=1))
     view = panel.slice_to(panel.end_time)
-    assert view.close("BBB").tolist() == [12.0, 12.0]
+    assert view.close("BBB")[0] != view.close("BBB")[0]  # NaN: no past close exists.
+    assert view.close("BBB")[1] == 12.0
+    assert view.quote_volume("BBB").tolist() == [0.0, 120.0]
     assert view.stale_mask("BBB").tolist() == [True, False]
+
+
+def test_build_panel_sets_missing_bar_volume_to_zero_without_reusing_old_volume():
+    rows = (
+        (datetime(2024, 1, 1, 1, tzinfo=UTC), "AAA", 10.0, 100.0),
+        (datetime(2024, 1, 1, 3, tzinfo=UTC), "AAA", 12.0, 120.0),
+    )
+    view = build_panel(rows, timedelta(hours=1)).slice_to(rows[-1][0])
+    assert view.close("AAA").tolist() == [10.0, 10.0, 12.0]
+    assert view.quote_volume("AAA").tolist() == [100.0, 0.0, 120.0]
 
 
 def test_bulk_jobs_and_coverage_are_deterministic():

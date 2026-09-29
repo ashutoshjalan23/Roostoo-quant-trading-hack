@@ -448,6 +448,12 @@ def test_interval_that_does_not_divide_a_day_is_rejected():
         bars_per_day("7h")
 
 
+def test_config_rejects_non_hourly_intervals_until_strategy_supports_them(tmp_path):
+    with pytest.raises(ConfigError) as excinfo:
+        load_with(tmp_path, data={"interval": "15m"})
+    assert_problem(excinfo, "currently require one-hour bars")
+
+
 def test_ewma_halflife_matches_its_definition():
     """At the half-life the EWMA weight has decayed to one half."""
     lam = 0.94

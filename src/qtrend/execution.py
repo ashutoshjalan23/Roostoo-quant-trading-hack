@@ -6,7 +6,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from decimal import ROUND_DOWN, Decimal
 
-from qtrend.config import ExecutionConfig, LimitsConfig
+from qtrend.config import CostsConfig, ExecutionConfig, LimitsConfig
 
 
 @dataclass(frozen=True, slots=True)
@@ -47,6 +47,7 @@ def plan_orders(
     info: Mapping[str, PairInfo],
     execution: ExecutionConfig,
     limits: LimitsConfig,
+    costs: CostsConfig,
 ) -> tuple[Order, ...]:
     """Plan rounded, banded orders without exceeding cash or per-order limits."""
     equity_value = _decimal(equity)
@@ -84,19 +85,26 @@ def plan_orders(
         Decimal(0),
     )
     current_cash = equity_value - current_invested
-    sell_proceeds = sum((order.notional for order in sells), Decimal(0))
+    cost_rate = _decimal(
+        costs.taker_fee if execution.order_type == "market" else costs.maker_fee
+    ) + _decimal(costs.slippage_bps) / Decimal("10000")
+    sell_proceeds = sum(
+        (order.notional * (Decimal(1) - cost_rate) for order in sells), Decimal(0)
+    )
     available_cash = current_cash + sell_proceeds - equity_value * _decimal(execution.cash_buffer)
     if available_cash < 0:
         available_cash = Decimal(0)
 
     buy_orders: list[Order] = []
     for symbol, quantity, price in buys:
-        affordable = _floor_step(available_cash / price, info[symbol].step_size)
+        affordable = _floor_step(
+            available_cash / (price * (Decimal(1) + cost_rate)), info[symbol].step_size
+        )
         quantity = min(quantity, affordable)
         if quantity <= 0 or quantity * price < info[symbol].min_notional:
             continue
         order = Order(symbol, "BUY", quantity, price)
         buy_orders.append(order)
-        available_cash -= order.notional
+        available_cash -= order.notional * (Decimal(1) + cost_rate)
 
     return tuple(sorted(sells, key=lambda order: order.symbol) + buy_orders)
