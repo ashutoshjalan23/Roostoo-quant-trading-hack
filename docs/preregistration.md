@@ -68,6 +68,19 @@ case regardless of outcome: net PnL, total return, Sharpe, Sortino, Calmar, maxi
 stop counts, and 14-day PnL histogram for the Q3-2025-onward case. No outcome selects a winner
 without a separately pre-registered validation.
 
+#### Result — stop-loss matrix, run 2026-09-30
+
+- **Pre-registration commit:** `2919b95621d68adbadeb47d60ac84e88e5be9fe8`
+- **Code/data commit used:** `ac53d376897e2ae365f8e1777a33176fee41f19c`
+- **Outcome:** all 12 cases completed. Every stop setting was net positive over the trailing
+  three-year window, with maximum drawdowns from 65.32% to 72.57%. All three lost money over the
+  trailing one-year, trailing five-year and 2025-07-01-to-present windows. No setting is selected.
+- **Full results:** [`reports/stop-loss-matrix-2026-09-30.md`](../reports/stop-loss-matrix-2026-09-30.md)
+  and [`reports/stop-loss-matrix-2026-09-30.json`](../reports/stop-loss-matrix-2026-09-30.json).
+- **Validation:** 225 tests passed, 1 skipped; Ruff passed; all 900 downloaded archives passed
+  SHA-256 verification during loading. No holdout was used. Prices are Binance USDT proxies and
+  the backtest stop is not yet part of a live exchange adapter.
+
 ## Holdout status
 
 - Split point (`[backtest] in_sample_end`): 2025-01-01T00:00:00Z

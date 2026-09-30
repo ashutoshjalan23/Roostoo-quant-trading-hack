@@ -1,0 +1,742 @@
+{
+  "as_of_utc": "2026-09-30T00:00:00+00:00",
+  "bars": 45264,
+  "case_count": 12,
+  "cases": [
+    {
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": -0.7328415228036752,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 365,
+        "ending_equity_usd": 547470.088870726,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.6056223921811168,
+        "pnl_usd": -452529.91112927406,
+        "report_from": "2025-09-30T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 51,
+          "max_drawdown": 0.15347042065517225,
+          "median_return": -0.023639642562249263,
+          "p10_return": -0.10980962462302701,
+          "p90_return": 0.10554881750723899,
+          "worst_return": -0.147414670996451
+        },
+        "sharpe_daily_annualized": -1.339178045689481,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": -1.8575987606536932,
+        "taker_fee_per_side": 0.001,
+        "total_return": -0.4525299111292741
+      },
+      "range": "trailing_1y",
+      "report_from": "2025-09-30T00:00:00+00:00",
+      "stop_events": 41,
+      "stop_loss_percent": 5.0,
+      "stop_symbols": {
+        "ADAUSD": 4,
+        "AVAXUSD": 5,
+        "BNBUSD": 4,
+        "BTCUSD": 5,
+        "DOGEUSD": 5,
+        "ETHUSD": 4,
+        "LINKUSD": 4,
+        "LTCUSD": 5,
+        "SOLUSD": 4,
+        "XRPUSD": 4
+      }
+    },
+    {
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": 0.18386454999327922,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 1096,
+        "ending_equity_usd": 1425857.3720090804,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.6532246815847286,
+        "pnl_usd": 425857.37200908037,
+        "report_from": "2023-09-30T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 155,
+          "max_drawdown": 0.21729291863087394,
+          "median_return": -0.008993947626995014,
+          "p10_return": -0.10251204975008683,
+          "p90_return": 0.13618378570589024,
+          "worst_return": -0.21693214108976377
+        },
+        "sharpe_daily_annualized": 0.4779935415534998,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": 0.6910020301199578,
+        "taker_fee_per_side": 0.001,
+        "total_return": 0.42585737200908036
+      },
+      "range": "trailing_3y",
+      "report_from": "2023-09-30T00:00:00+00:00",
+      "stop_events": 104,
+      "stop_loss_percent": 5.0,
+      "stop_symbols": {
+        "ADAUSD": 7,
+        "AVAXUSD": 13,
+        "BNBUSD": 9,
+        "BTCUSD": 8,
+        "DOGEUSD": 9,
+        "ETHUSD": 7,
+        "LINKUSD": 9,
+        "LTCUSD": 15,
+        "SOLUSD": 14,
+        "XRPUSD": 18
+      }
+    },
+    {
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": -0.267598592610971,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 1826,
+        "ending_equity_usd": 289156.1877155464,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.820398216565381,
+        "pnl_usd": -710843.8122844535,
+        "report_from": "2021-09-30T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 259,
+          "max_drawdown": 0.2219551004230193,
+          "median_return": -0.016150779583099073,
+          "p10_return": -0.11678467164309451,
+          "p90_return": 0.12447466076762113,
+          "worst_return": -0.21149698693233987
+        },
+        "sharpe_daily_annualized": -0.35613260752918513,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": -0.49847962221614245,
+        "taker_fee_per_side": 0.001,
+        "total_return": -0.7108438122844536
+      },
+      "range": "trailing_5y",
+      "report_from": "2021-09-30T00:00:00+00:00",
+      "stop_events": 185,
+      "stop_loss_percent": 5.0,
+      "stop_symbols": {
+        "ADAUSD": 11,
+        "AVAXUSD": 17,
+        "BNBUSD": 18,
+        "BTCUSD": 20,
+        "DOGEUSD": 21,
+        "ETHUSD": 22,
+        "LINKUSD": 24,
+        "LTCUSD": 23,
+        "SOLUSD": 25,
+        "XRPUSD": 22
+      }
+    },
+    {
+      "fortnight_pnl_distribution": {
+        "best_pnl_usd": 132285.3989008998,
+        "count": 32,
+        "histogram": [
+          {
+            "frequency": 1,
+            "pnl_high_usd": -220287.05506096955,
+            "pnl_low_inclusive_usd": -270654.54848409374
+          },
+          {
+            "frequency": 6,
+            "pnl_high_usd": -69184.57479159697,
+            "pnl_low_inclusive_usd": -119552.06821472116
+          },
+          {
+            "frequency": 7,
+            "pnl_high_usd": -18817.081368472776,
+            "pnl_low_inclusive_usd": -69184.57479159697
+          },
+          {
+            "frequency": 7,
+            "pnl_high_usd": 31550.412054651417,
+            "pnl_low_inclusive_usd": -18817.081368472776
+          },
+          {
+            "frequency": 7,
+            "pnl_high_usd": 81917.90547777561,
+            "pnl_low_inclusive_usd": 31550.412054651417
+          },
+          {
+            "frequency": 4,
+            "pnl_high_usd": 132285.3989008998,
+            "pnl_low_inclusive_usd": 81917.90547777561
+          }
+        ],
+        "median_pnl_usd": -4229.280511840014,
+        "negative_windows": 16,
+        "p10_pnl_usd": -74199.43655947383,
+        "p90_pnl_usd": 92892.21170503844,
+        "partial_tail_days": 8.0,
+        "positive_windows": 16,
+        "window_days": 14,
+        "worst_pnl_usd": -270654.54848409374,
+        "zero_windows": 0
+      },
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": -0.18645081526811255,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 456,
+        "ending_equity_usd": 832167.0193390328,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.5975259084016361,
+        "pnl_usd": -167832.98066096718,
+        "report_from": "2025-07-01T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 32,
+          "max_drawdown": 0.2105901325005027,
+          "median_return": -0.01002223442036676,
+          "p10_return": -0.09632243605012117,
+          "p90_return": 0.10277521140408989,
+          "worst_return": -0.19078529711633008
+        },
+        "sharpe_daily_annualized": -0.0732518315772399,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": -0.10189548959068818,
+        "taker_fee_per_side": 0.001,
+        "total_return": -0.1678329806609672
+      },
+      "range": "consecutive_14d_since_q3_2025",
+      "report_from": "2025-07-01T00:00:00+00:00",
+      "stop_events": 32,
+      "stop_loss_percent": 5.0,
+      "stop_symbols": {
+        "ADAUSD": 1,
+        "AVAXUSD": 3,
+        "BNBUSD": 2,
+        "BTCUSD": 5,
+        "DOGEUSD": 5,
+        "ETHUSD": 4,
+        "LINKUSD": 5,
+        "LTCUSD": 5,
+        "SOLUSD": 4,
+        "XRPUSD": 4
+      }
+    },
+    {
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": -0.7775375443871723,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 365,
+        "ending_equity_usd": 493957.5803819846,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.6449154586756797,
+        "pnl_usd": -506042.4196180154,
+        "report_from": "2025-09-30T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 51,
+          "max_drawdown": 0.18268425352164921,
+          "median_return": -0.02384206084276952,
+          "p10_return": -0.11336386700768764,
+          "p90_return": 0.10164561401242578,
+          "worst_return": -0.17113820476315944
+        },
+        "sharpe_daily_annualized": -1.5444895264393026,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": -2.04345301040063,
+        "taker_fee_per_side": 0.001,
+        "total_return": -0.5060424196180154
+      },
+      "range": "trailing_1y",
+      "report_from": "2025-09-30T00:00:00+00:00",
+      "stop_events": 32,
+      "stop_loss_percent": 7.5,
+      "stop_symbols": {
+        "ADAUSD": 2,
+        "AVAXUSD": 4,
+        "BNBUSD": 3,
+        "BTCUSD": 3,
+        "DOGEUSD": 3,
+        "ETHUSD": 3,
+        "LINKUSD": 3,
+        "LTCUSD": 5,
+        "SOLUSD": 5,
+        "XRPUSD": 4
+      }
+    },
+    {
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": 0.07798750597662482,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 1096,
+        "ending_equity_usd": 1196633.984663398,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.7257460811517132,
+        "pnl_usd": 196633.984663398,
+        "report_from": "2023-09-30T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 155,
+          "max_drawdown": 0.24264263264771355,
+          "median_return": -0.002534735660792653,
+          "p10_return": -0.1155579838553276,
+          "p90_return": 0.1453697986554429,
+          "worst_return": -0.21494634990207095
+        },
+        "sharpe_daily_annualized": 0.34959755655966557,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": 0.4944735597870516,
+        "taker_fee_per_side": 0.001,
+        "total_return": 0.196633984663398
+      },
+      "range": "trailing_3y",
+      "report_from": "2023-09-30T00:00:00+00:00",
+      "stop_events": 57,
+      "stop_loss_percent": 7.5,
+      "stop_symbols": {
+        "ADAUSD": 4,
+        "AVAXUSD": 5,
+        "BNBUSD": 7,
+        "BTCUSD": 3,
+        "DOGEUSD": 6,
+        "ETHUSD": 4,
+        "LINKUSD": 7,
+        "LTCUSD": 9,
+        "SOLUSD": 7,
+        "XRPUSD": 7
+      }
+    },
+    {
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": -0.19865219248775062,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 1826,
+        "ending_equity_usd": 462472.6476362442,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.7184637297676035,
+        "pnl_usd": -537527.3523637558,
+        "report_from": "2021-09-30T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 259,
+          "max_drawdown": 0.21995746665533059,
+          "median_return": -0.008988096559323422,
+          "p10_return": -0.12452083866742432,
+          "p90_return": 0.12327085288270677,
+          "worst_return": -0.2045568729546039
+        },
+        "sharpe_daily_annualized": -0.11259994251465089,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": -0.15823283593188534,
+        "taker_fee_per_side": 0.001,
+        "total_return": -0.5375273523637558
+      },
+      "range": "trailing_5y",
+      "report_from": "2021-09-30T00:00:00+00:00",
+      "stop_events": 123,
+      "stop_loss_percent": 7.5,
+      "stop_symbols": {
+        "ADAUSD": 9,
+        "AVAXUSD": 16,
+        "BNBUSD": 17,
+        "BTCUSD": 11,
+        "DOGEUSD": 8,
+        "ETHUSD": 12,
+        "LINKUSD": 12,
+        "LTCUSD": 13,
+        "SOLUSD": 19,
+        "XRPUSD": 14
+      }
+    },
+    {
+      "fortnight_pnl_distribution": {
+        "best_pnl_usd": 132695.27452939982,
+        "count": 32,
+        "histogram": [
+          {
+            "frequency": 1,
+            "pnl_high_usd": -225557.16988783554,
+            "pnl_low_inclusive_usd": -261382.41432955908
+          },
+          {
+            "frequency": 1,
+            "pnl_high_usd": -153906.68100438846,
+            "pnl_low_inclusive_usd": -189731.925446112
+          },
+          {
+            "frequency": 1,
+            "pnl_high_usd": -118081.43656266492,
+            "pnl_low_inclusive_usd": -153906.68100438846
+          },
+          {
+            "frequency": 1,
+            "pnl_high_usd": -82256.19212094138,
+            "pnl_low_inclusive_usd": -118081.43656266492
+          },
+          {
+            "frequency": 3,
+            "pnl_high_usd": -46430.94767921785,
+            "pnl_low_inclusive_usd": -82256.19212094138
+          },
+          {
+            "frequency": 8,
+            "pnl_high_usd": -10605.703237494308,
+            "pnl_low_inclusive_usd": -46430.94767921785
+          },
+          {
+            "frequency": 7,
+            "pnl_high_usd": 25219.54120422923,
+            "pnl_low_inclusive_usd": -10605.703237494308
+          },
+          {
+            "frequency": 4,
+            "pnl_high_usd": 61044.7856459528,
+            "pnl_low_inclusive_usd": 25219.54120422923
+          },
+          {
+            "frequency": 2,
+            "pnl_high_usd": 96870.0300876763,
+            "pnl_low_inclusive_usd": 61044.7856459528
+          },
+          {
+            "frequency": 4,
+            "pnl_high_usd": 132695.27452939982,
+            "pnl_low_inclusive_usd": 96870.0300876763
+          }
+        ],
+        "median_pnl_usd": 5896.428149949992,
+        "negative_windows": 15,
+        "p10_pnl_usd": -83621.04821039402,
+        "p90_pnl_usd": 94741.8543195395,
+        "partial_tail_days": 8.0,
+        "positive_windows": 17,
+        "window_days": 14,
+        "worst_pnl_usd": -261382.41432955908,
+        "zero_windows": 0
+      },
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": -0.240557352939361,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 456,
+        "ending_equity_usd": 790512.6626369936,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.6171227705748314,
+        "pnl_usd": -209487.33736300643,
+        "report_from": "2025-07-01T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 32,
+          "max_drawdown": 0.20841718480526478,
+          "median_return": -0.007339136890724185,
+          "p10_return": -0.10436507172867385,
+          "p90_return": 0.10593503528585145,
+          "worst_return": -0.20750862535530723
+        },
+        "sharpe_daily_annualized": -0.145888216408797,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": -0.20370239106391572,
+        "taker_fee_per_side": 0.001,
+        "total_return": -0.2094873373630064
+      },
+      "range": "consecutive_14d_since_q3_2025",
+      "report_from": "2025-07-01T00:00:00+00:00",
+      "stop_events": 20,
+      "stop_loss_percent": 7.5,
+      "stop_symbols": {
+        "ADAUSD": 1,
+        "AVAXUSD": 2,
+        "BNBUSD": 3,
+        "BTCUSD": 2,
+        "DOGEUSD": 2,
+        "ETHUSD": 1,
+        "LINKUSD": 3,
+        "LTCUSD": 3,
+        "SOLUSD": 1,
+        "XRPUSD": 3
+      }
+    },
+    {
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": -0.7120120457847037,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 365,
+        "ending_equity_usd": 545601.5397110634,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.6310587881220958,
+        "pnl_usd": -454398.4602889366,
+        "report_from": "2025-09-30T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 51,
+          "max_drawdown": 0.16575741905130498,
+          "median_return": -0.01988555030063921,
+          "p10_return": -0.11397711769794305,
+          "p90_return": 0.08532715730787088,
+          "worst_return": -0.16513980890788216
+        },
+        "sharpe_daily_annualized": -1.2459215061459725,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": -1.6828753438309563,
+        "taker_fee_per_side": 0.001,
+        "total_return": -0.4543984602889366
+      },
+      "range": "trailing_1y",
+      "report_from": "2025-09-30T00:00:00+00:00",
+      "stop_events": 22,
+      "stop_loss_percent": 10.0,
+      "stop_symbols": {
+        "ADAUSD": 1,
+        "AVAXUSD": 2,
+        "BNBUSD": 4,
+        "BTCUSD": 2,
+        "DOGEUSD": 3,
+        "ETHUSD": 2,
+        "LINKUSD": 2,
+        "LTCUSD": 3,
+        "SOLUSD": 3,
+        "XRPUSD": 4
+      }
+    },
+    {
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": 0.0752023107561968,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 1096,
+        "ending_equity_usd": 1183583.297867669,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.701407180684529,
+        "pnl_usd": 183583.29786766903,
+        "report_from": "2023-09-30T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 155,
+          "max_drawdown": 0.2474498845078337,
+          "median_return": -0.004242832350721981,
+          "p10_return": -0.11789567706503652,
+          "p90_return": 0.13824166175303373,
+          "worst_return": -0.22791359343748052
+        },
+        "sharpe_daily_annualized": 0.3425123758162495,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": 0.48467274494943047,
+        "taker_fee_per_side": 0.001,
+        "total_return": 0.18358329786766903
+      },
+      "range": "trailing_3y",
+      "report_from": "2023-09-30T00:00:00+00:00",
+      "stop_events": 46,
+      "stop_loss_percent": 10.0,
+      "stop_symbols": {
+        "ADAUSD": 3,
+        "AVAXUSD": 5,
+        "BNBUSD": 6,
+        "BTCUSD": 3,
+        "DOGEUSD": 6,
+        "ETHUSD": 3,
+        "LINKUSD": 4,
+        "LTCUSD": 7,
+        "SOLUSD": 4,
+        "XRPUSD": 10
+      }
+    },
+    {
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": -0.15087555535354943,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 1826,
+        "ending_equity_usd": 550389.6786573102,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.7448258113148785,
+        "pnl_usd": -449610.3213426898,
+        "report_from": "2021-09-30T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 259,
+          "max_drawdown": 0.25055312266332647,
+          "median_return": -0.005834747222461245,
+          "p10_return": -0.1313704934880932,
+          "p90_return": 0.1423510711528595,
+          "worst_return": -0.2371879874292503
+        },
+        "sharpe_daily_annualized": -0.013085567644796322,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": -0.018541313401337696,
+        "taker_fee_per_side": 0.001,
+        "total_return": -0.44961032134268974
+      },
+      "range": "trailing_5y",
+      "report_from": "2021-09-30T00:00:00+00:00",
+      "stop_events": 90,
+      "stop_loss_percent": 10.0,
+      "stop_symbols": {
+        "ADAUSD": 8,
+        "AVAXUSD": 11,
+        "BNBUSD": 7,
+        "BTCUSD": 9,
+        "DOGEUSD": 8,
+        "ETHUSD": 11,
+        "LINKUSD": 10,
+        "LTCUSD": 9,
+        "SOLUSD": 11,
+        "XRPUSD": 10
+      }
+    },
+    {
+      "fortnight_pnl_distribution": {
+        "best_pnl_usd": 139993.3770338,
+        "count": 32,
+        "histogram": [
+          {
+            "frequency": 1,
+            "pnl_high_usd": -216253.55322191905,
+            "pnl_low_inclusive_usd": -260784.41950388392
+          },
+          {
+            "frequency": 2,
+            "pnl_high_usd": -82660.9543760244,
+            "pnl_low_inclusive_usd": -127191.82065798927
+          },
+          {
+            "frequency": 8,
+            "pnl_high_usd": -38130.08809405952,
+            "pnl_low_inclusive_usd": -82660.9543760244
+          },
+          {
+            "frequency": 7,
+            "pnl_high_usd": 6400.77818790538,
+            "pnl_low_inclusive_usd": -38130.08809405952
+          },
+          {
+            "frequency": 9,
+            "pnl_high_usd": 50931.644469870254,
+            "pnl_low_inclusive_usd": 6400.77818790538
+          },
+          {
+            "frequency": 1,
+            "pnl_high_usd": 95462.51075183513,
+            "pnl_low_inclusive_usd": 50931.644469870254
+          },
+          {
+            "frequency": 4,
+            "pnl_high_usd": 139993.3770338,
+            "pnl_low_inclusive_usd": 95462.51075183513
+          }
+        ],
+        "median_pnl_usd": 2191.048193216033,
+        "negative_windows": 15,
+        "p10_pnl_usd": -74750.51371694193,
+        "p90_pnl_usd": 95235.38964605045,
+        "partial_tail_days": 8.0,
+        "positive_windows": 17,
+        "window_days": 14,
+        "worst_pnl_usd": -260784.41950388392,
+        "zero_windows": 0
+      },
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": -0.22883949332558656,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 456,
+        "ending_equity_usd": 801839.7068137157,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.6061046742273292,
+        "pnl_usd": -198160.29318628425,
+        "report_from": "2025-07-01T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 32,
+          "max_drawdown": 0.20612630551226652,
+          "median_return": -0.00611341239571167,
+          "p10_return": -0.10138150390652681,
+          "p90_return": 0.10206470535063526,
+          "worst_return": -0.18469387218267563
+        },
+        "sharpe_daily_annualized": -0.11570015630555809,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": -0.16207655839912802,
+        "taker_fee_per_side": 0.001,
+        "total_return": -0.19816029318628425
+      },
+      "range": "consecutive_14d_since_q3_2025",
+      "report_from": "2025-07-01T00:00:00+00:00",
+      "stop_events": 14,
+      "stop_loss_percent": 10.0,
+      "stop_symbols": {
+        "ADAUSD": 1,
+        "AVAXUSD": 1,
+        "BNBUSD": 2,
+        "BTCUSD": 2,
+        "DOGEUSD": 1,
+        "ETHUSD": 2,
+        "LINKUSD": 2,
+        "LTCUSD": 2,
+        "SOLUSD": 1,
+        "XRPUSD": 2
+      }
+    }
+  ],
+  "cooldown_hours_after_stop": 24,
+  "data_and_execution_assumptions": {
+    "data_source": "Binance Vision spot USDT pairs; USDT treated as a USD proxy",
+    "fee_per_side": 0.001,
+    "holdout_used": false,
+    "pair_info": "data\\snapshots\\roostoo-pair-info-2026-09-30.json",
+    "slippage_bps_per_order": 10.0
+  },
+  "fill_rule": "stop is detected at an hourly close and filled at the next hourly close",
+  "initial_cash_usd": 1000000.0,
+  "stop_loss_unit": "percent below weighted-average entry price; close-price trigger",
+  "symbols": [
+    "ADAUSD",
+    "AVAXUSD",
+    "BNBUSD",
+    "BTCUSD",
+    "DOGEUSD",
+    "ETHUSD",
+    "LINKUSD",
+    "LTCUSD",
+    "SOLUSD",
+    "XRPUSD"
+  ]
+}

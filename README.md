@@ -306,7 +306,9 @@ The bot places **no orders** for a cycle when any of these fire, and writes an a
 The simulator triggers when an hourly close crosses the threshold and fills at the next hourly
 close, with modeled fees and slippage. After a full stop exit it blocks that coin for the
 configured cooldown. Fixed percentage stops do not adjust to each coin's volatility; compare
-thresholds across a fixed universe only when that limitation is intended.
+thresholds across a fixed universe only when that limitation is intended. Stop-loss handling is
+currently implemented in the backtest simulator; the paper/dry-run entry point has no live
+exchange order adapter yet.
 
 ### 5.4 Operational
 
