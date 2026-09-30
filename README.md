@@ -238,6 +238,21 @@ so a rotation fits in available cash. Market orders by default.
 Config: `[execution] drift_band`, `[execution] order_type`, `[execution] cash_buffer`,
 `[execution] sells_before_buys`.
 
+### 3.8 Experimental weekly long/short comparison
+
+As a separate research candidate, the repository also tests weekly cross-sectional momentum:
+rank the fixed ten-coin basket on 30-day returns with a one-day skip, long the top two, and short
+the bottom two. Each side targets half of NAV, with a fee/slippage haircut and full short
+collateral; weekly volatility scaling is capped at 1x. The implementation is isolated in
+`qtrend.backtest.long_short` and is not connected to the live spot-only bot.
+
+This is an empirical comparison, not a claimed profitable strategy. On the 2026-09-30 evaluation,
+it returned -43.23% over the latest year and -38.53% from 2025-07-01, with 48.23% maximum
+drawdown. See the [complete long/short report](reports/long-short-momentum-2026-09-30.md) for
+all four windows, fortnight PnL frequencies, and modeling limitations. Roostoo's API provides
+short endpoints, but the event may reject short orders; verify competition-account eligibility
+before considering any live use.
+
 ---
 
 ## 4. Known drawbacks and mitigations

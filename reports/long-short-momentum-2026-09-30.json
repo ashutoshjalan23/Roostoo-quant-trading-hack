@@ -1,0 +1,215 @@
+{
+  "as_of_utc": "2026-09-30T00:00:00+00:00",
+  "bars": 45264,
+  "case_count": 4,
+  "cases": [
+    {
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": -0.8963133947939513,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 365,
+        "ending_equity_usd": 567718.10858421,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.482288777481859,
+        "pnl_usd": -432281.89141578996,
+        "report_from": "2025-09-30T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 51,
+          "max_drawdown": 0.1841884526745913,
+          "median_return": -0.010603818009512267,
+          "p10_return": -0.06225345234000623,
+          "p90_return": 0.018114558197313224,
+          "worst_return": -0.17395423406098598
+        },
+        "sharpe_daily_annualized": -2.8417890218171085,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": -3.366636753158261,
+        "taker_fee_per_side": 0.001,
+        "total_return": -0.43228189141579
+      },
+      "range": "trailing_1y",
+      "report_from": "2025-09-30T00:00:00+00:00"
+    },
+    {
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": 0.007869188432160688,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 1096,
+        "ending_equity_usd": 1011439.4226521824,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.482288618557169,
+        "pnl_usd": 11439.422652182402,
+        "report_from": "2023-09-30T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 155,
+          "max_drawdown": 0.18898499045352346,
+          "median_return": -0.004097012023890012,
+          "p10_return": -0.05605329766958817,
+          "p90_return": 0.06578923321173726,
+          "worst_return": -0.17007142120052865
+        },
+        "sharpe_daily_annualized": 0.1504058495661226,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": 0.21951831986288095,
+        "taker_fee_per_side": 0.001,
+        "total_return": 0.01143942265218234
+      },
+      "range": "trailing_3y",
+      "report_from": "2023-09-30T00:00:00+00:00"
+    },
+    {
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": -0.04265694971075906,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 1826,
+        "ending_equity_usd": 901230.1548797296,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.4822885927454607,
+        "pnl_usd": -98769.84512027039,
+        "report_from": "2021-09-30T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 259,
+          "max_drawdown": 0.21598621093517106,
+          "median_return": 0.0,
+          "p10_return": -0.061888226123127006,
+          "p90_return": 0.06694710738338988,
+          "worst_return": -0.21598621093517112
+        },
+        "sharpe_daily_annualized": 0.0714124026425835,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": 0.10132363212646288,
+        "taker_fee_per_side": 0.001,
+        "total_return": -0.09876984512027043
+      },
+      "range": "trailing_5y",
+      "report_from": "2021-09-30T00:00:00+00:00"
+    },
+    {
+      "fortnight_pnl_distribution": {
+        "best_pnl_usd": 59030.68269622815,
+        "count": 32,
+        "histogram": [
+          {
+            "frequency": 1,
+            "pnl_high_usd": -100232.76464114754,
+            "pnl_low_inclusive_usd": -122984.68568934407
+          },
+          {
+            "frequency": 1,
+            "pnl_high_usd": -77480.84359295102,
+            "pnl_low_inclusive_usd": -100232.76464114754
+          },
+          {
+            "frequency": 1,
+            "pnl_high_usd": -54728.92254475449,
+            "pnl_low_inclusive_usd": -77480.84359295102
+          },
+          {
+            "frequency": 5,
+            "pnl_high_usd": -31977.00149655796,
+            "pnl_low_inclusive_usd": -54728.92254475449
+          },
+          {
+            "frequency": 9,
+            "pnl_high_usd": -9225.080448361434,
+            "pnl_low_inclusive_usd": -31977.00149655796
+          },
+          {
+            "frequency": 9,
+            "pnl_high_usd": 13526.840599835094,
+            "pnl_low_inclusive_usd": -9225.080448361434
+          },
+          {
+            "frequency": 3,
+            "pnl_high_usd": 36278.76164803162,
+            "pnl_low_inclusive_usd": 13526.840599835094
+          },
+          {
+            "frequency": 3,
+            "pnl_high_usd": 59030.68269622815,
+            "pnl_low_inclusive_usd": 36278.76164803162
+          }
+        ],
+        "median_pnl_usd": -11348.5502942194,
+        "negative_windows": 21,
+        "p10_pnl_usd": -51954.319309373954,
+        "p90_pnl_usd": 27657.032317975874,
+        "partial_tail_days": 8.0,
+        "positive_windows": 11,
+        "window_days": 14,
+        "worst_pnl_usd": -122984.68568934407,
+        "zero_windows": 0
+      },
+      "in_sample_end": "2026-09-30T00:00:00+00:00",
+      "performance": {
+        "annualization_days": 365.0,
+        "calmar": -0.668918235469848,
+        "calmar_undefined_below_drawdown": 0.01,
+        "daily_mar": 0.0,
+        "daily_observations": 456,
+        "ending_equity_usd": 614699.7715589384,
+        "in_sample_end": "2026-09-30T00:00:00+00:00",
+        "initial_cash_usd": 1000000.0,
+        "max_drawdown": 0.4822885541238917,
+        "pnl_usd": -385300.22844106157,
+        "report_from": "2025-07-01T00:00:00+00:00",
+        "rolling_window_days": 14,
+        "rolling_windows": {
+          "count": 32,
+          "max_drawdown": 0.18418845025391353,
+          "median_return": -0.00470395622769032,
+          "p10_return": -0.05827232871172204,
+          "p90_return": 0.03696925319917135,
+          "worst_return": -0.17395423201101234
+        },
+        "sharpe_daily_annualized": -1.8356356892664454,
+        "slippage_bps_per_order": 10.0,
+        "sortino_daily_annualized_mar_0": -2.342120611305055,
+        "taker_fee_per_side": 0.001,
+        "total_return": -0.3853002284410616
+      },
+      "range": "consecutive_14d_since_q3_2025",
+      "report_from": "2025-07-01T00:00:00+00:00"
+    }
+  ],
+  "fees_and_slippage": {
+    "fee_per_side": 0.001,
+    "slippage_bps_per_order": 10.0
+  },
+  "gross_target": "1.0x before fees/slippage; target haircutted by entry costs to avoid borrowing",
+  "holdout_used": false,
+  "initial_cash_usd": 1000000.0,
+  "long_count": 2,
+  "rebalance": "Monday 00:00 UTC, next hourly close fill",
+  "short_collateral": "100% collateral; no leverage; short PnL capped at posted collateral",
+  "short_count": 2,
+  "strategy": "weekly cross-sectional 30-day momentum, 1-day skip, top/bottom quintile",
+  "symbols": [
+    "ADAUSD",
+    "AVAXUSD",
+    "BNBUSD",
+    "BTCUSD",
+    "DOGEUSD",
+    "ETHUSD",
+    "LINKUSD",
+    "LTCUSD",
+    "SOLUSD",
+    "XRPUSD"
+  ],
+  "volatility_scale": "min(1, 10% / sample std of last 8 completed weekly net returns); 1x until 8 exist"
+}

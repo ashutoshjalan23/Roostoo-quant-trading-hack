@@ -35,7 +35,7 @@ configuration. Do not extend or retune either matrix after viewing results.
 **Spent after the stop-loss pre-registration:** 14 / 14
 **Spent after this pre-registration:** 18 / 18
 
-## Registered long-short candidate — 2026-09-30 (not yet executed)
+## Registered long-short candidate — 2026-09-30 (executed 2026-09-30)
 
 The candidate adapts the weekly cross-sectional momentum and volatility-managed portfolio in
 Grobys et al., *Cryptocurrency momentum has (not) its moments* (2025),
@@ -62,7 +62,24 @@ profit guarantee or permission to deploy; every requested metric and all 14-day 
 will be reported. No holdout is used. The official docs say this competition may reject short
 requests, so no API short order is submitted by this historical backtest.
 
-## Registered run matrix — 2026-09-30 (not yet executed)
+#### Result — long-short candidate, run 2026-09-30
+
+- **Pre-registration commit:** `36fabbf6f80f32aacdaddbdce935529d1a1596b8`
+- **Execution-code commit:** `adfd445c088dafc9bc52b73dd0ce0a173d4776d2`
+- **Outcome:** all four registered windows completed. The candidate lost 43.23% in the trailing
+  year, 9.88% in the trailing five years, and 38.53% from 2025-07-01; the trailing three-year
+  return was 1.14%. Maximum drawdown was 48.23% in each period. Parameters were not retuned.
+- **Fortnight result:** 32 complete windows; 11 positive, 21 negative; median PnL -$11,349;
+  p10 -$51,954; p90 $27,657; worst -$122,985; best $59,031. Eight trailing days are partial.
+- **Full results:** [`reports/long-short-momentum-2026-09-30.md`](../reports/long-short-momentum-2026-09-30.md)
+  and [`reports/long-short-momentum-2026-09-30.json`](../reports/long-short-momentum-2026-09-30.json).
+- **Validation:** 228 tests passed, 1 skipped; Ruff lint passed. The repo-wide Ruff formatter
+  check identifies existing unrelated files; the new files pass format checks.
+- **Limitations:** USDT/USD proxy, fixed current basket, modeled costs, simplified short collateral
+  and capped-loss ledger. No API orders or holdout were used. Roostoo may reject competition
+  short orders.
+
+## Registered run matrix — 2026-09-30 (executed 2026-09-30)
 
 This exact matrix is recorded in git before the runs start; the pre-registration commit hash is
 `2919b95621d68adbadeb47d60ac84e88e5be9fe8` (the run code, stop settings, data manifest and
