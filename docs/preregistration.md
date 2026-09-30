@@ -32,7 +32,8 @@ configuration. Do not extend or retune this matrix after viewing its results.
 ## Registered run matrix — 2026-09-30 (not yet executed)
 
 This exact matrix is recorded in git before the runs start; the pre-registration commit hash is
-added to the result addendum after git assigns it.
+`2919b95621d68adbadeb47d60ac84e88e5be9fe8` (the run code, stop settings, data manifest and
+pair metadata are frozen in that commit).
 
 The user-requested matrix tests stop-loss drawdowns of **5%, 7.5%, and 10%** against four
 reporting windows: trailing 1 year, 3 years, 5 years, and consecutive non-overlapping 14-day
