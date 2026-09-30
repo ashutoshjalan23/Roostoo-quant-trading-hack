@@ -5,10 +5,11 @@ read after the fact is a story, not evidence.
 
 ## Configuration budget
 
-**Ten configurations were originally budgeted.** The user has now explicitly requested a fixed
-12-case stop-loss comparison, so this pre-registration records an authorized one-time expansion
-to 14 total configurations (the original two plus these 12). Each matrix cell counts as one
-configuration. Do not extend or retune this matrix after viewing its results.
+**Ten configurations were originally budgeted.** The user explicitly requested the 12-case
+stop-loss comparison and then directed us to use the documented long-short strategy. This
+pre-registration records those requested expansions: 14 total configurations for the first
+matrix and 4 more for the long-short candidate, 18 in total. Each run window counts as one
+configuration. Do not extend or retune either matrix after viewing results.
 
 | # | Date committed | Run name | Consumed by |
 |---|---|---|---|
@@ -26,8 +27,40 @@ configuration. Do not extend or retune this matrix after viewing its results.
 | 12 | 2026-09-30 | stoploss-10pct-trailing-3y | user-requested matrix |
 | 13 | 2026-09-30 | stoploss-10pct-trailing-5y | user-requested matrix |
 | 14 | 2026-09-30 | stoploss-10pct-fortnight | user-requested matrix |
+| 15 | 2026-09-30 | ls-momentum-trailing-1y | user-requested documented strategy |
+| 16 | 2026-09-30 | ls-momentum-trailing-3y | user-requested documented strategy |
+| 17 | 2026-09-30 | ls-momentum-trailing-5y | user-requested documented strategy |
+| 18 | 2026-09-30 | ls-momentum-fortnight | user-requested documented strategy |
 
-**Spent after this pre-registration:** 14 / 14
+**Spent after the stop-loss pre-registration:** 14 / 14
+**Spent after this pre-registration:** 18 / 18
+
+## Registered long-short candidate — 2026-09-30 (not yet executed)
+
+The candidate adapts the weekly cross-sectional momentum and volatility-managed portfolio in
+Grobys et al., *Cryptocurrency momentum has (not) its moments* (2025),
+<https://link.springer.com/article/10.1007/s11408-025-00474-9>. The source uses a 30-day formation
+return with a one-day skip, longs the top return quintile, shorts the bottom quintile, and
+rebalances weekly. This repo's comparison uses the same fixed 10-coin basket as the earlier
+matrix, so each side holds two names; this differs from the source's annual top-30 universe.
+
+Exact rules: at 00:00 UTC each Monday, rank coins by the 30-calendar-day simple return from
+`t-31d` to `t-1d`, excluding the latest day. Equal-weight the two winners and two losers. Target
+long notional at 50% of NAV and short collateral at 50% of NAV; combined gross target is 1.0x
+before costs, with no leverage. Haircut the opening target by fee and slippage so collateral,
+holdings, and entry costs remain within available NAV. Scale both sides together by
+`min(1, 10% / std(last 8 completed weekly portfolio returns))`; use 1.0x until eight weekly
+returns exist. Close/rebalance changes fill at the next hourly close. Model 10 bps slippage per
+traded notional and 0.1% fees per side; short
+open and close fees are 0.1% each per Roostoo's short-endpoint docs, even for limit shorts. No
+maker-fee discount is assumed for shorts.
+
+Run this fixed parameterization over trailing 1-year, 3-year, 5-year, and non-overlapping
+14-day reporting windows from 2025-07-01. Initial cash remains $1,000,000, matching the previous
+user-requested studies. The candidate is accepted only as an empirical comparison, not a
+profit guarantee or permission to deploy; every requested metric and all 14-day PnL frequencies
+will be reported. No holdout is used. The official docs say this competition may reject short
+requests, so no API short order is submitted by this historical backtest.
 
 ## Registered run matrix — 2026-09-30 (not yet executed)
 
