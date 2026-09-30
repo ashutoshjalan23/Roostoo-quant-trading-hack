@@ -13,7 +13,7 @@ from qtrend.execution import PairInfo
 def test_short_ledger_marks_and_realizes_pnl_after_costs():
     config = load_config("configs/research-usd-1m.toml")
     book = LongShortBook(Decimal("1000"))
-    _open_short(book, "AAA", Decimal("2"), Decimal("100"), config)
+    _open_short(book, "AAA", Decimal("2"), Decimal("100"), Decimal("0.01"), config)
     assert book.cash < Decimal("800")  # collateral and entry costs are reserved
     assert book.equity({"AAA": 90.0}) > Decimal("1000")
     _close_short(book, "AAA", Decimal("2"), Decimal("90"), config)
@@ -24,7 +24,7 @@ def test_short_ledger_marks_and_realizes_pnl_after_costs():
 def test_short_loss_cannot_exceed_posted_collateral():
     config = load_config("configs/research-usd-1m.toml")
     book = LongShortBook(Decimal("1000"))
-    _open_short(book, "AAA", Decimal("2"), Decimal("100"), config)
+    _open_short(book, "AAA", Decimal("2"), Decimal("100"), Decimal("0.01"), config)
     assert book.equity({"AAA": 1000.0}) >= 0
     position = book.shorts["AAA"]
     assert position.collateral == Decimal("200")

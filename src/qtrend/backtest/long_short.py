@@ -77,7 +77,12 @@ def _close_long(
 
 
 def _buy_long(
-    book: LongShortBook, symbol: str, quantity: Decimal, price: Decimal, config: Config
+    book: LongShortBook,
+    symbol: str,
+    quantity: Decimal,
+    price: Decimal,
+    step_size: Decimal,
+    config: Config,
 ) -> None:
     notional = quantity * price
     charge = notional + _cost(notional, config)
@@ -92,7 +97,7 @@ def _buy_long(
                     + _D(str(config.costs.slippage_bps)) / _D(10000)
                 )
             ),
-            _D("0.00000001"),
+            step_size,
         )
         quantity = min(quantity, affordable)
         notional = quantity * price
@@ -122,7 +127,12 @@ def _close_short(
 
 
 def _open_short(
-    book: LongShortBook, symbol: str, quantity: Decimal, price: Decimal, config: Config
+    book: LongShortBook,
+    symbol: str,
+    quantity: Decimal,
+    price: Decimal,
+    step_size: Decimal,
+    config: Config,
 ) -> None:
     notional = quantity * price
     charge = notional + _cost(notional, config)
@@ -130,9 +140,7 @@ def _open_short(
         unit_cost = price * (
             1 + _D(str(config.costs.taker_fee)) + _D(str(config.costs.slippage_bps)) / _D(10000)
         )
-        quantity = min(
-            quantity, _round_quantity(max(book.cash, _D(0)) / unit_cost, _D("0.00000001"))
-        )
+        quantity = min(quantity, _round_quantity(max(book.cash, _D(0)) / unit_cost, step_size))
         notional = quantity * price
         charge = notional + _cost(notional, config)
     if quantity <= 0:
@@ -243,11 +251,25 @@ def run_long_short_backtest(
             desired = _round_quantity(target / fill_prices[symbol], exchange_info[symbol].step_size)
             held = book.longs.get(symbol, _D(0))
             if desired > held:
-                _buy_long(book, symbol, desired - held, fill_prices[symbol], config)
+                _buy_long(
+                    book,
+                    symbol,
+                    desired - held,
+                    fill_prices[symbol],
+                    exchange_info[symbol].step_size,
+                    config,
+                )
         for symbol, target in sorted(targets_short.items()):
             desired = _round_quantity(target / fill_prices[symbol], exchange_info[symbol].step_size)
             held = book.shorts.get(symbol, ShortPosition(_D(0), _D(0), _D(0))).quantity
             if desired > held:
-                _open_short(book, symbol, desired - held, fill_prices[symbol], config)
+                _open_short(
+                    book,
+                    symbol,
+                    desired - held,
+                    fill_prices[symbol],
+                    exchange_info[symbol].step_size,
+                    config,
+                )
 
     return curve
