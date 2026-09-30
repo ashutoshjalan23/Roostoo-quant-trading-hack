@@ -31,7 +31,7 @@ keys carry `_NO_PLACEHOLDER` and are constrained by a domain rule alone:
     selection.hour_utc          0 is midnight UTC, a real choice
     selection.min_signal        0.0 is the value README section 3.4 actually describes
     exposure.max_leverage       the template prints 1.0, a real value, not a placeholder
-    risk.stop_loss_sigma        unconstrained while stop_loss_enabled is false
+    risk.stop_loss_pct          unconstrained while stop_loss_enabled is false
     risk.stop_cooldown_hours    unconstrained while stop_loss_enabled is false
     risk.daily_loss_limit       0.0 disables an explicitly optional control (section 5.3)
 
@@ -172,7 +172,7 @@ SCHEMA: tuple[Spec, ...] = (
     _spec("limits", "max_order_fraction", "max_order_fraction", "float", (), 0),
 
     _spec("risk", "stop_loss_enabled", "stop_loss_enabled", "bool", (), _NO_PLACEHOLDER),
-    _spec("risk", "stop_loss_sigma", "stop_loss_sigma", "float", (), _NO_PLACEHOLDER),
+    _spec("risk", "stop_loss_pct", "stop_loss_pct", "float", (), _NO_PLACEHOLDER),
     _spec("risk", "stop_cooldown_hours", "stop_cooldown_hours", "int", (), _NO_PLACEHOLDER),
     _spec("risk", "daily_loss_limit", "daily_loss_limit", "float", (), _NO_PLACEHOLDER),
 
@@ -288,7 +288,7 @@ class LimitsConfig:
 @dataclass(frozen=True, slots=True)
 class RiskConfig:
     stop_loss_enabled: bool
-    stop_loss_sigma: float
+    stop_loss_pct: float
     stop_cooldown_hours: int
     daily_loss_limit: float
 
@@ -684,11 +684,11 @@ def _check_domains(values: dict[str, object], skip: set[str], problems: list[str
 
     stop_enabled = get("risk.stop_loss_enabled")
     if stop_enabled is True:
-        stop_sigma = get("risk.stop_loss_sigma")
-        if stop_sigma is not None and stop_sigma <= 0:
+        stop_pct = get("risk.stop_loss_pct")
+        if stop_pct is not None and not 0 < stop_pct < 1:
             problems.append(
-                "risk.stop_loss_sigma must be greater than 0 while risk.stop_loss_enabled "
-                f"is true, got {stop_sigma!r}"
+                "risk.stop_loss_pct must be in (0, 1) while risk.stop_loss_enabled "
+                f"is true, got {stop_pct!r}"
             )
         cooldown = get("risk.stop_cooldown_hours")
         if cooldown is not None and cooldown <= 0:
@@ -697,7 +697,7 @@ def _check_domains(values: dict[str, object], skip: set[str], problems: list[str
                 f"risk.stop_loss_enabled is true, got {cooldown!r}"
             )
     elif stop_enabled is False:
-        non_negative("risk.stop_loss_sigma")
+        non_negative("risk.stop_loss_pct")
         non_negative("risk.stop_cooldown_hours")
 
 

@@ -5,23 +5,67 @@ read after the fact is a story, not evidence.
 
 ## Configuration budget
 
-**Ten configurations for the entire project.** Each run below consumes one. When the count
-reaches ten, the budget is spent and the strategy is locked.
+**Ten configurations were originally budgeted.** The user has now explicitly requested a fixed
+12-case stop-loss comparison, so this pre-registration records an authorized one-time expansion
+to 14 total configurations (the original two plus these 12). Each matrix cell counts as one
+configuration. Do not extend or retune this matrix after viewing its results.
 
 | # | Date committed | Run name | Consumed by |
 |---|---|---|---|
 | 1 | 2026-09-29 | usd-1m-primary | 10 bps slippage configuration |
 | 2 | 2026-09-29 | usd-1m-slippage-stress | 25 bps slippage sensitivity |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 3 | 2026-09-30 | stoploss-5pct-trailing-1y | user-requested matrix |
+| 4 | 2026-09-30 | stoploss-5pct-trailing-3y | user-requested matrix |
+| 5 | 2026-09-30 | stoploss-5pct-trailing-5y | user-requested matrix |
+| 6 | 2026-09-30 | stoploss-5pct-fortnight | user-requested matrix |
+| 7 | 2026-09-30 | stoploss-7_5pct-trailing-1y | user-requested matrix |
+| 8 | 2026-09-30 | stoploss-7_5pct-trailing-3y | user-requested matrix |
+| 9 | 2026-09-30 | stoploss-7_5pct-trailing-5y | user-requested matrix |
+| 10 | 2026-09-30 | stoploss-7_5pct-fortnight | user-requested matrix |
+| 11 | 2026-09-30 | stoploss-10pct-trailing-1y | user-requested matrix |
+| 12 | 2026-09-30 | stoploss-10pct-trailing-3y | user-requested matrix |
+| 13 | 2026-09-30 | stoploss-10pct-trailing-5y | user-requested matrix |
+| 14 | 2026-09-30 | stoploss-10pct-fortnight | user-requested matrix |
 
-**Spent:** 2 / 10
+**Spent after this pre-registration:** 14 / 14
+
+## Registered run matrix — 2026-09-30 (not yet executed)
+
+This exact matrix is recorded in git before the runs start; the pre-registration commit hash is
+added to the result addendum after git assigns it.
+
+The user-requested matrix tests stop-loss drawdowns of **5%, 7.5%, and 10%** against four
+reporting windows: trailing 1 year, 3 years, 5 years, and consecutive non-overlapping 14-day
+windows beginning 2025-07-01 (Q3 2025) through the latest complete hourly observation. This is
+12 cases, with the same fixed ten-symbol BTC/ETH/BNB/SOL/XRP/ADA/DOGE/LTC/LINK/AVAX basket and
+$1,000,000 initial cash in every case. It is a comparison requested by the user, not a search to
+select and deploy a winning stop setting.
+
+The stop is a close-price trigger when a coin closes at least the registered percentage below
+its weighted-average entry price. It is filled at the following hourly close using the existing
+order planner and modeled market costs. After liquidation, that coin has a fixed 24-hour
+re-entry cooldown; the next normal rebalance can otherwise act on the current strategy signals.
+The portfolio is flat during each case's warm-up, including each trailing-window start. Data is
+hourly Binance Vision spot USDT history, used as a USDT≈USD proxy, and current Roostoo pair
+precision/minimum-notional metadata from `data/snapshots/roostoo-pair-info-2026-09-30.json`. The
+900 source archives are SHA-256 recorded in `data/snapshots/backtest-data-manifest.json`; the
+panel spans 2021-08-01 01:00 UTC through 2026-09-30 00:00 UTC. A handful of archive gaps are
+forward-filled with zero volume and excluded from live-return calculations by the stale mask.
+A case is reported through the latest complete hourly bar;
+the incomplete tail after the last complete 14-day window is excluded from the fortnight PnL
+frequency table and reported separately. No holdout is used.
+
+Held fixed: all strategy, universe, sizing, execution and risk settings other than the enabled
+stop threshold; 10 bps market slippage, 0.1% taker fee, $1m cash, and 0.05% maker fee (recorded
+for completeness; the strategy uses market orders). Fees match the [problem statement linked in
+the team resource pack](https://luma.com/coghwiyt); its current page has a different event title
+and lists a $100,000 wallet, so the event edition and actual competition balance must be
+confirmed before deployment. The user-requested $1m remains the fixed research starting cash.
+The hypothesis is descriptive: the stop settings will produce distinguishable risk/return
+profiles over these windows. Report every
+case regardless of outcome: net PnL, total return, Sharpe, Sortino, Calmar, maximum drawdown,
+stop counts, and 14-day PnL histogram for the Q3-2025-onward case. No outcome selects a winner
+without a separately pre-registered validation.
 
 ## Holdout status
 

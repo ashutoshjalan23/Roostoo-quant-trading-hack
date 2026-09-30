@@ -72,7 +72,12 @@ def plan_orders(
         desired_notional = abs(drift) * equity_value
         if desired_notional > equity_value * _decimal(limits.max_order_fraction):
             raise ValueError(f"order for {symbol!r} exceeds max_order_fraction")
-        quantity = _floor_step(desired_notional / price, info[symbol].step_size)
+        # A weighted target travels through float-derived equity/weights; absorb only
+        # sub-picostep representation noise so exact full exits do not leave dust.
+        quantity = _floor_step(
+            desired_notional / price + info[symbol].step_size * Decimal("1e-12"),
+            info[symbol].step_size,
+        )
         if quantity <= 0 or quantity * price < info[symbol].min_notional:
             continue
         if drift < 0:

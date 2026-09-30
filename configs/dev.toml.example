@@ -63,7 +63,7 @@ max_order_fraction = 0.0
 
 [risk]
 stop_loss_enabled = false
-stop_loss_sigma = 0.0
+stop_loss_pct = 0.0
 stop_cooldown_hours = 0
 daily_loss_limit = 0.0
 

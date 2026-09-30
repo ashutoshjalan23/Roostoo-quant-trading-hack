@@ -88,7 +88,7 @@ def valid_document() -> dict[str, dict[str, object]]:
         },
         "risk": {
             "stop_loss_enabled": False,
-            "stop_loss_sigma": 0.0,
+            "stop_loss_pct": 0.0,
             "stop_cooldown_hours": 0,
             "daily_loss_limit": 0.0,
         },
@@ -188,6 +188,32 @@ def test_sequences_are_tuples_not_lists(tmp_path):
     config = load_with(tmp_path)
     assert isinstance(config.signal.horizons_days, tuple)
     assert isinstance(config.universe.exclude, tuple)
+
+
+def test_enabled_percentage_stop_loss_loads(tmp_path):
+    config = load_with(
+        tmp_path,
+        risk={
+            "stop_loss_enabled": True,
+            "stop_loss_pct": 0.05,
+            "stop_cooldown_hours": 24,
+        },
+    )
+    assert config.risk.stop_loss_pct == 0.05
+
+
+@pytest.mark.parametrize("stop_loss_pct", [0.0, 1.0, 5.0])
+def test_enabled_percentage_stop_loss_rejects_out_of_range_values(tmp_path, stop_loss_pct):
+    with pytest.raises(ConfigError) as excinfo:
+        load_with(
+            tmp_path,
+            risk={
+                "stop_loss_enabled": True,
+                "stop_loss_pct": stop_loss_pct,
+                "stop_cooldown_hours": 24,
+            },
+        )
+    assert_problem(excinfo, "risk.stop_loss_pct must be in (0, 1)")
 
 
 # --------------------------------------------------------------------------------------

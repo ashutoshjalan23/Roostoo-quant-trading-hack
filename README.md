@@ -44,10 +44,8 @@ These are constraints on the code, not aspirations.
 
 ## 2. Roostoo trading conditions
 
-> **Verify every line in this section against the official API docs and your event's own rule
-> sheet before writing code against it.** These conditions were gathered from public
-> documentation and from the published rules of previous Roostoo university hackathons. They
-> differ between events. Treat this table as a template to fill in, not as fact.
+> Verify exchange mechanics against the API documentation. For competition terms, use the
+> problem statement and team email for your event edition; terms differ between hackathons.
 
 ### Exchange mechanics
 
@@ -68,13 +66,21 @@ These are constraints on the code, not aspirations.
 
 | Item | Value to confirm | Config key |
 |---|---|---|
-| Market order commission | Reported as 0.1% per side in prior events | `[costs] taker_fee` |
-| Limit order commission | Reported as 0.05% per side in prior events | `[costs] maker_fee` |
-| Trade rate limit | Prior events capped trading at roughly **one trade per minute**; HFT is explicitly disallowed | `[limits] min_seconds_between_orders` |
+| Market order commission | 0.1% per side on the problem statement linked in the team resource pack | `[costs] taker_fee` |
+| Limit order commission | 0.05% per side on the problem statement linked in the team resource pack | `[costs] maker_fee` |
+| Strategy / request rules | No HFT, market-making or arbitrage; excessive server requests can fail | strategy and API pacing |
 | General API rate limit | Confirm the per-minute request ceiling and pace below it | `[limits] api_calls_per_minute` |
 | Minimum order notional | Confirm per pair from `exchangeInfo` | fetched, not hardcoded |
 | Lot size / precision | Confirm per pair from `exchangeInfo` | fetched, not hardcoded |
 | Starting mock balance | Varies by event | fetched from the balance endpoint |
+
+The linked [problem statement](https://luma.com/coghwiyt) currently lists spot trading without
+leverage, 0.1% taker and 0.05% maker commission, and a $100,000 mock portfolio. Its current page
+title names an HK/AU/IN event, while the team invitation describes the APAC University Quant
+Trading Hackathon. Confirm the applicable edition and starting balance with the team's event
+materials before deployment. The requested research runs deliberately keep the previously
+specified **$1,000,000 initial cash**; this is a backtest assumption and is not changed to the
+page's $100,000 figure. The strategy uses market orders, so modeled fills pay the taker fee.
 
 ### Competition rules to encode
 
@@ -292,13 +298,15 @@ The bot places **no orders** for a cycle when any of these fire, and writes an a
 |---|---|---|
 | Max single-name weight | Caps blowup from one coin | `[weights] max_single_name` |
 | Max invested fraction | Hard ceiling regardless of what the vol target computes | `[exposure] max_leverage` |
-| Per-name stop-loss | Optional, off by default, expressed in multiples of the asset's daily sigma | `[risk] stop_loss_sigma`, `[risk] stop_loss_enabled` |
+| Per-name stop-loss | Optional, off by default, expressed as a loss fraction from average entry price | `[risk] stop_loss_pct`, `[risk] stop_loss_enabled` |
 | Stop re-entry cooldown | Prevents immediate re-buy of a stopped name | `[risk] stop_cooldown_hours` |
 | Daily portfolio loss limit | Optional circuit breaker with an explicit, tested re-entry rule | `[risk] daily_loss_limit`, `[risk] loss_limit_reset` |
 
-**On stop-loss sizing:** express the stop in multiples of the asset's own forecast volatility, not
-as a fixed percentage. A fixed 5% stop is a normal day for a volatile altcoin and a crisis for
-Bitcoin. This also keeps the rule from being a hardcoded number.
+**On stop-loss sizing:** stop distance is a configured fraction from weighted-average entry price.
+The simulator triggers when an hourly close crosses the threshold and fills at the next hourly
+close, with modeled fees and slippage. After a full stop exit it blocks that coin for the
+configured cooldown. Fixed percentage stops do not adjust to each coin's volatility; compare
+thresholds across a fixed universe only when that limitation is intended.
 
 ### 5.4 Operational
 
@@ -385,7 +393,7 @@ max_order_fraction         = 0.0
 
 [risk]
 stop_loss_enabled  = false
-stop_loss_sigma    = 0.0
+stop_loss_pct      = 0.0
 stop_cooldown_hours = 0
 daily_loss_limit   = 0.0
 

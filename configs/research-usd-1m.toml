@@ -53,7 +53,7 @@ use_client_order_id = true
 
 [costs]
 taker_fee = 0.001
-maker_fee = 0.001
+maker_fee = 0.0005
 slippage_bps = 10
 
 [limits]
@@ -63,7 +63,7 @@ max_order_fraction = 1.0
 
 [risk]
 stop_loss_enabled = false
-stop_loss_sigma = 0.0
+stop_loss_pct = 0.0
 stop_cooldown_hours = 0
 daily_loss_limit = 0.0
 
